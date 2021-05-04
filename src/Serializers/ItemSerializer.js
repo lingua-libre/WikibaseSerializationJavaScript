@@ -1,20 +1,22 @@
-( function( wb, util, $ ) {
+( function( util, $ ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	FingerprintSerializer = require( './FingerprintSerializer.js' ),
+	StatementGroupSetSerializer = require( './StatementGroupSetSerializer.js' ),
+	SiteLinkSetSerializer = require( './SiteLinkSetSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.ItemSerializer
- * @extends wikibase.serialization.Serializer
+ * @class ItemSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.ItemSerializer = util.inherit( 'WbItemSerializer', PARENT, {
+module.exports = util.inherit( 'WbItemSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -28,9 +30,9 @@ MODULE.ItemSerializer = util.inherit( 'WbItemSerializer', PARENT, {
 			throw new Error( 'Not an instance of datamodel.Item' );
 		}
 
-		var fingerprintSerializer = new MODULE.FingerprintSerializer(),
-			statementGroupSetSerializer = new MODULE.StatementGroupSetSerializer(),
-			siteLinkSetSerializer = new MODULE.SiteLinkSetSerializer();
+		var fingerprintSerializer = new FingerprintSerializer(),
+			statementGroupSetSerializer = new StatementGroupSetSerializer(),
+			siteLinkSetSerializer = new SiteLinkSetSerializer();
 
 		return $.extend( true,
 			{
@@ -44,4 +46,4 @@ MODULE.ItemSerializer = util.inherit( 'WbItemSerializer', PARENT, {
 	}
 } );
 
-}( wikibase, util, jQuery ) );
+}( util, jQuery ) );

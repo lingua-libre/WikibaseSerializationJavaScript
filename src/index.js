@@ -15,5 +15,15 @@ module.exports = {
 	SnakSerializer: require( './Serializers/SnakSerializer.js' ),
 	StatementListSerializer: require( './Serializers/StatementListSerializer.js' ),
 	StatementSerializer: require( './Serializers/StatementSerializer.js' ),
-	TermMapSerializer: require( './Serializers/TermMapSerializer.js' )
+	TermMapSerializer: require( './Serializers/TermMapSerializer.js' ),
+	ItemSerializer: require( './Serializers/ItemSerializer.js' ),
+	FingerprintSerializer: require( './Serializers/FingerprintSerializer.js' ),
+	SiteLinkSetSerializer: require( './Serializers/SiteLinkSetSerializer.js' ),
+	SiteLinkSerializer: require( './Serializers/SiteLinkSerializer.js' ),
+	StatementGroupSetSerializer: require( './Serializers/StatementGroupSetSerializer.js' ),
+	StatementGroupSerializer: require( './Serializers/StatementGroupSerializer.js' ),
+	EntitySerializer: require( './Serializers/EntitySerializer.js' ),
+	MultiTermMapSerializer: require( './Serializers/MultiTermMapSerializer.js' ),
+	MultiTermSerializer: require( './Serializers/MultiTermSerializer.js' ),
+	PropertySerializer: require( './Serializers/PropertySerializer.js' )
 };

@@ -1,36 +1,38 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	StrategyProvider = require( '../StrategyProvider.js' ),
+	ItemSerializer = require( './ItemSerializer.js' ),
+	PropertySerializer = require( './PropertySerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.EntitySerializer
- * @extends wikibase.serialization.Serializer
+ * @class EntitySerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.EntitySerializer = util.inherit( 'WbEntitySerializer', PARENT, function() {
-	this._strategyProvider = new MODULE.StrategyProvider();
+module.exports = util.inherit( 'WbEntitySerializer', PARENT, function() {
+	this._strategyProvider = new StrategyProvider();
 	this._strategyProvider.registerStrategy(
-		new MODULE.ItemSerializer(), datamodel.Item.TYPE
+		new ItemSerializer(), datamodel.Item.TYPE
 	);
 	this._strategyProvider.registerStrategy(
-		new MODULE.PropertySerializer(), datamodel.Property.TYPE
+		new PropertySerializer(), datamodel.Property.TYPE
 	);
 }, {
 	/**
-	 * @property {wikibase.serialization.StrategyProvider}
+	 * @property {StrategyProvider}
 	 * @private
 	 */
 	_strategyProvider: null,
 
 	/**
-	 * @param {wikibase.serialization.Serializer} serializer
+	 * @param {Serializer} serializer
 	 * @param {string} entityType
 	 */
 	registerStrategy: function( serializer, entityType ) {
@@ -54,4 +56,4 @@ MODULE.EntitySerializer = util.inherit( 'WbEntitySerializer', PARENT, function()
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

@@ -1,20 +1,20 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	MultiTermSerializer = require( './MultiTermSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.MultiTermMapSerializer
- * @extends wikibase.serialization.Serializer
+ * @class MultiTermMapSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.MultiTermMapSerializer = util.inherit( 'WbMultiTermMapSerializer', PARENT, {
+module.exports = util.inherit( 'WbMultiTermMapSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -29,7 +29,7 @@ MODULE.MultiTermMapSerializer = util.inherit( 'WbMultiTermMapSerializer', PARENT
 		}
 
 		var serialization = {},
-			multiTermSerializer = new MODULE.MultiTermSerializer(),
+			multiTermSerializer = new MultiTermSerializer(),
 			languageCodes = multiTermMap.getKeys();
 
 		for( var i = 0; i < languageCodes.length; i++ ) {
@@ -42,4 +42,4 @@ MODULE.MultiTermMapSerializer = util.inherit( 'WbMultiTermMapSerializer', PARENT
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

@@ -1,8 +1,8 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	SiteLinkSerializer = require( './SiteLinkSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
@@ -14,7 +14,7 @@ var MODULE = wb.serialization,
  *
  * @constructor
  */
-MODULE.SiteLinkSetSerializer = util.inherit( 'WbSiteLinkSetSerializer', PARENT, {
+module.exports = util.inherit( 'WbSiteLinkSetSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -30,7 +30,7 @@ MODULE.SiteLinkSetSerializer = util.inherit( 'WbSiteLinkSetSerializer', PARENT, 
 
 		var serialization = {},
 			siteIds = siteLinkSet.getKeys(),
-			siteLinkSerializer = new MODULE.SiteLinkSerializer();
+			siteLinkSerializer = new SiteLinkSerializer();
 
 		for( var i = 0; i < siteIds.length; i++ ) {
 			serialization[siteIds[i]] = siteLinkSerializer.serialize(
@@ -42,4 +42,4 @@ MODULE.SiteLinkSetSerializer = util.inherit( 'WbSiteLinkSetSerializer', PARENT, 
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

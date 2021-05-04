@@ -1,20 +1,21 @@
-( function( wb, util, $ ) {
+( function( util, $ ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	FingerprintSerializer = require( './FingerprintSerializer.js' ),
+	StatementGroupSetSerializer = require( './StatementGroupSetSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.PropertySerializer
- * @extends wikibase.serialization.Serializer
+ * @class PropertySerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.PropertySerializer = util.inherit( 'WbPropertySerializer', PARENT, {
+module.exports = util.inherit( 'WbPropertySerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -28,8 +29,8 @@ MODULE.PropertySerializer = util.inherit( 'WbPropertySerializer', PARENT, {
 			throw new Error( 'Not an instance of datamodel.Property' );
 		}
 
-		var fingerprintSerializer = new MODULE.FingerprintSerializer(),
-			statementGroupSetSerializer = new MODULE.StatementGroupSetSerializer();
+		var fingerprintSerializer = new FingerprintSerializer(),
+			statementGroupSetSerializer = new StatementGroupSetSerializer();
 
 		return $.extend( true,
 			{
@@ -43,4 +44,4 @@ MODULE.PropertySerializer = util.inherit( 'WbPropertySerializer', PARENT, {
 	}
 } );
 
-}( wikibase, util, jQuery ) );
+}( util, jQuery ) );

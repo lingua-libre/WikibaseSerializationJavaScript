@@ -1,20 +1,21 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	TermMapSerializer = require( './TermMapSerializer.js' ),
+	MultiTermMapSerializer = require( './MultiTermMapSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.FingerprintSerializer
- * @extends wikibase.serialization.Serializer
+ * @class FingerprintSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.FingerprintSerializer = util.inherit( 'WbFingerprintSerializer', PARENT, {
+module.exports = util.inherit( 'WbFingerprintSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -28,8 +29,8 @@ MODULE.FingerprintSerializer = util.inherit( 'WbFingerprintSerializer', PARENT, 
 			throw new Error( 'Not an instance of datamodel.Fingerprint' );
 		}
 
-		var termMapSerializer = new MODULE.TermMapSerializer(),
-			multiTermMapSerializer = new MODULE.MultiTermMapSerializer();
+		var termMapSerializer = new TermMapSerializer(),
+			multiTermMapSerializer = new MultiTermMapSerializer();
 
 		return {
 			labels: termMapSerializer.serialize( fingerprint.getLabels() ),
@@ -39,4 +40,4 @@ MODULE.FingerprintSerializer = util.inherit( 'WbFingerprintSerializer', PARENT, 
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

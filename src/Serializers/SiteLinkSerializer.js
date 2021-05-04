@@ -1,8 +1,7 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
@@ -14,7 +13,7 @@ var MODULE = wb.serialization,
  *
  * @constructor
  */
-MODULE.SiteLinkSerializer = util.inherit( 'WbSiteLinkSerializer', PARENT, {
+module.exports = util.inherit( 'WbSiteLinkSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -36,4 +35,4 @@ MODULE.SiteLinkSerializer = util.inherit( 'WbSiteLinkSerializer', PARENT, {
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

@@ -1,20 +1,19 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.MultiTermSerializer
- * @extends wikibase.serialization.Serializer
+ * @class MultiTermSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.MultiTermSerializer = util.inherit( 'WbMultiTermSerializer', PARENT, {
+module.exports = util.inherit( 'WbMultiTermSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -43,4 +42,4 @@ MODULE.MultiTermSerializer = util.inherit( 'WbMultiTermSerializer', PARENT, {
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

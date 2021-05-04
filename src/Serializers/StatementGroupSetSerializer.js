@@ -1,20 +1,20 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	StatementGroupSerializer = require( './StatementGroupSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.StatementGroupSetSerializer
- * @extends wikibase.serialization.Serializer
+ * @class StatementGroupSetSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.StatementGroupSetSerializer = util.inherit( 'WbStatementGroupSetSerializer', PARENT, {
+module.exports = util.inherit( 'WbStatementGroupSetSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -30,7 +30,7 @@ MODULE.StatementGroupSetSerializer = util.inherit( 'WbStatementGroupSetSerialize
 
 		var serialization = {},
 			propertyIds = statementGroupSet.getKeys(),
-			statementGroupSerializer = new MODULE.StatementGroupSerializer();
+			statementGroupSerializer = new StatementGroupSerializer();
 
 		for( var i = 0; i < propertyIds.length; i++ ) {
 			serialization[propertyIds[i]] = statementGroupSerializer.serialize(
@@ -42,4 +42,4 @@ MODULE.StatementGroupSetSerializer = util.inherit( 'WbStatementGroupSetSerialize
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );

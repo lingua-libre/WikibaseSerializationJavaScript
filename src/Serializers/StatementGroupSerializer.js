@@ -1,20 +1,20 @@
-( function( wb, util ) {
+( function( util ) {
 	'use strict';
 
-var MODULE = wb.serialization,
-	PARENT = MODULE.Serializer,
+var PARENT = require( './Serializer.js' ),
+	StatementListSerializer = require( './StatementListSerializer.js' ),
 	datamodel = require( 'wikibase.datamodel' );
 
 /**
- * @class wikibase.serialization.StatementGroupSerializer
- * @extends wikibase.serialization.Serializer
+ * @class StatementGroupSerializer
+ * @extends Serializer
  * @since 2.0
  * @license GPL-2.0+
  * @author H. Snater < mediawiki@snater.com >
  *
  * @constructor
  */
-MODULE.StatementGroupSerializer = util.inherit( 'WbStatementGroupSerializer', PARENT, {
+module.exports = util.inherit( 'WbStatementGroupSerializer', PARENT, {
 	/**
 	 * @inheritdoc
 	 *
@@ -28,10 +28,10 @@ MODULE.StatementGroupSerializer = util.inherit( 'WbStatementGroupSerializer', PA
 			throw new Error( 'Not an instance of datamodel.StatementGroup' );
 		}
 
-		var statementListSerializer = new MODULE.StatementListSerializer();
+		var statementListSerializer = new StatementListSerializer();
 
 		return statementListSerializer.serialize( statementGroup.getItemContainer() );
 	}
 } );
 
-}( wikibase, util ) );
+}( util ) );
